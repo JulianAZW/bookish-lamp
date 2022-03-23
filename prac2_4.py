@@ -23,16 +23,14 @@ r2_list2 = list()
 mse_list3 = list()
 r2_list3 = list()
 
-
-#Regresiones de una variable
+#Regresiones de dos variables
 
 
 def regre1(x,y):
-    x = x[:,np.newaxis]
     # 
     y = np.array(y)
     # Se crea el objeto linear regression
-    regr = SGDRegressor(learning_rate = 'constant', eta0 = 1*(10)**-6, max_iter= 100000)
+    regr = SGDRegressor(learning_rate = 'constant', eta0 = 1*(10)**-6, max_iter= 1000000)
     # Se entrena el modelo
     regr.fit(x, y.ravel())
     y_pred = regr.predict(x)
@@ -50,7 +48,6 @@ def regre1(x,y):
     r2_list1.append(r2)
 
 def regre2(x,y):
-    x = x[:,np.newaxis]
     # 
     y = np.array(y)
     # Se crea el objeto linear regression
@@ -69,7 +66,6 @@ def regre2(x,y):
     r2_list2.append(r2)
 
 def regre3(x,y):
-    x = x[:,np.newaxis]
     # 
     y = np.array(y)
     # Se crea el objeto linear regression
@@ -87,13 +83,13 @@ def regre3(x,y):
     mse_list3.append(mse)
     r2_list3.append(r2)
 
-if __name__=='__main__':
-    
+if __name__=='__main__':            
+
     for i in range (1,11): 
         print("Se hizo el numero " + str(i) + " de regresion lineal.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1.iloc[:,7]
+        x = df1.iloc[:,[3,7]]
         y = df2
         regre1(x.values, y.values)
         
@@ -101,7 +97,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 2.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1.iloc[:,7]
+        x = df1.iloc[:,[3,7]]
         y = df2
         regre2(x.values, y.values)
 
@@ -109,9 +105,15 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 3.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1.iloc[:,7]
+        x = df1.iloc[:,[3,7]]
         y = df2
         regre3(x.values, y.values)
+
+    print()
+
+    print("REGRESIONES CON 2 VARIABLES (LAS MAS CORRELACIONADAS CON EL VALOR MEDIO DE LA CASA)")
+
+    print()
 
     print("*************************************************************")
     
