@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Created on Mon Mar 21 05:12:16 2022
 
@@ -12,7 +13,6 @@ import pandas as pd
 from sklearn.linear_model import SGDRegressor
 import statistics as st
 from  sklearn import preprocessing
-
 
 mse_list1 = list()
 r2_list1 = list()
@@ -33,7 +33,6 @@ r2_list2S = list()
 mse_list3S = list()
 r2_list3S = list()
 
-
 mse_list1R = list()
 r2_list1R = list()
 
@@ -43,8 +42,9 @@ r2_list2R = list()
 mse_list3R = list()
 r2_list3R = list()
 
-#Regresiones de TODAS las variables
 
+
+#Regresiones de una variable
 
 
 def regre1(x,y):
@@ -266,13 +266,13 @@ def regre3Robust(x,y):
 
 
 
-if __name__=='__main__':            
-
+if __name__=='__main__':
+    
     for i in range (1,11): 
         print("Se hizo el numero " + str(i) + " de regresion lineal.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre1(x.values, y.values)
         
@@ -280,7 +280,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 2.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre2(x.values, y.values)
 
@@ -288,17 +288,13 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 3.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre3(x.values, y.values)
 
-    print()
-
-    print("REGRESIONES CON TODAS LAS VARIABLES")
-
-    print()
-
     print("*************************************************************")
+    
+    print("ALGORITMO CON ALGUNAS COLUMNAS DE PRUEBA")
     
 
     print("Lista del mse de regresion lineal: ", mse_list1)
@@ -328,7 +324,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion lineal con escalado de datos standard.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre1Standard(x.values, y.values)
         
@@ -336,7 +332,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 2 con escalado de datos standard.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre2Standard(x.values, y.values)
 
@@ -344,7 +340,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 3 con escalado de datos standard.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre3Standard(x.values, y.values)
 
@@ -378,7 +374,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion lineal con escalado de datos robust.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre1Robust(x.values, y.values)
         
@@ -386,7 +382,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 2 con escalado de datos robust.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre2Robust(x.values, y.values)
 
@@ -394,7 +390,7 @@ if __name__=='__main__':
         print("Se hizo el numero " + str(i) + " de regresion polinomial 3 con escalado de datos robust.")
         df1 = pd.read_csv("data_validation_train"+str(i)+".csv", sep=',', engine='python')
         df2 = pd.read_csv("medianHouseValue_validation_train"+str(i)+".csv", sep=',', engine='python')
-        x = df1
+        x = df1.iloc[:,[2,3,4,5,6,7]]
         y = df2
         regre3Robust(x.values, y.values)
 
@@ -421,4 +417,4 @@ if __name__=='__main__':
     print("Promedio de los r2 de regresion polinomial 3 con escalado de datos robust: ", st.mean(r2_list3R))
 
 
-    print("*************************************************************")       
+    print("*************************************************************")    
